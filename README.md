@@ -1,3 +1,3 @@
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/320px-PHP-logo.svg.png">
+  <img src="http://1romanov.ru/logo.gif">
 </p>
