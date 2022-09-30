@@ -12,7 +12,7 @@
 		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 	</head>
 	<body>
-		<div id="app" class="container pb-2 mt-2">
+		<div id="app" class="container pb-2 my-3">
 			<h1 class="display-5">Калькулятор ресуров по игре Crossout</h1>
 			<h3>Романов Владислав, Корчагин Иван - 9&laquo;A&raquo;</h3>
 			<hr>
@@ -79,13 +79,13 @@
 				data() {
 					return {
 						resources: [
-							{ name: 'Металлолом', icon: 'magnet-fill', price: 100, count: 1000, quantity: 0 },
-							{ name: 'Медь', icon: 'boxes', price: 450, count: 100, quantity: 0 },
-							{ name: 'Провода', icon: 'plugin', price: 600, count: 100, quantity: 0 },
-							{ name: 'Пластик', icon: 'cone-striped', price: 700, count: 100, quantity: 0 },
-							{ name: 'Электроника', icon: 'cpu', price: 800, count: 100, quantity: 0 },
-							{ name: 'Аккумуляторы', icon: 'battery-half', price: 850, count: 100, quantity: 0 },
-							{ name: 'Урановая руда', icon: 'radioactive', price: 900, count: 10, quantity: 0 },
+							{ name: 'Металлолом', icon: 'magnet-fill', price: 6.2, count: 100, quantity: 0 },
+							{ name: 'Медь', icon: 'boxes', price: 2.99, count: 100, quantity: 0 },
+							{ name: 'Провода', icon: 'plugin', price: 13.26, count: 100, quantity: 0 },
+							{ name: 'Пластик', icon: 'cone-striped', price: 32.86, count: 100, quantity: 0 },
+							{ name: 'Электроника', icon: 'cpu', price: 5.30, count: 10, quantity: 0 },
+							{ name: 'Аккумуляторы', icon: 'battery-half', price: 1.49, count: 10, quantity: 0 },
+							{ name: 'Урановая руда', icon: 'radioactive', price: 349, count: 10, quantity: 0 },
 						],
 						price: 0,
 					}
@@ -96,8 +96,18 @@
 					},
 					getProfit() {
 						if (!this.price || !this.getCraftPrice) return 0;
-						let percent = (this.price - this.getCraftPrice) * 100 / this.price;
-						return Math.round(percent * 100) / 100
+						//let percent = (this.price - this.getCraftPrice) * 100 / this.price;
+						let priceA = this.price
+						let priceB = this.getCraftPrice
+						let multiply = -1
+						if (priceA < priceB) {
+							let tmp = priceA
+							priceA = priceB
+							priceB = tmp
+							multiply = 1
+						}
+						let percent = 100 - priceA * 100 / priceB;
+						return multiply * Math.round(percent * 100) / 100
 					},
 					getBadgeClassForProfit() {
 						if (this.getProfit == 0) return 'secondary'
