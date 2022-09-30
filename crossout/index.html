@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<meta charset="utf-8">
 		<title>Проект (шк. №102)</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -15,6 +16,16 @@
 			<h1 class="display-5">Калькулятор ресуров по игре Crossout</h1>
 			<h3>Романов Владислав, Корчагин Иван - 9&laquo;A&raquo;</h3>
 			<hr>
+			<ul class="list-group mb-2">
+				<li class="list-group-item list-group-item-primary">Предмет №1 - 3500&nbsp;<i class="bi bi-coin"></i></li>
+			</ul>
+			<div class="row justify-content-end">
+				<div class="col-lg-3">
+					<div class="d-grid gap-2 mb-2">
+						<button class="btn btn-outline-danger" @click="clearList"><i class="bi bi-trash3-fill"></i> Очистить список</button>
+					</div>
+				</div>
+			</div>
 			<div class="table-responsive">
 				<table class="table">
 					<thead>
@@ -41,14 +52,22 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="row justify-content-end">
+				<div class="col-lg-3">
+					<div class="d-grid gap-2 mb-2">
+						<button class="btn btn-outline-primary" @click="addToList"><i class="bi bi-arrow-90deg-up"></i> Запомнить предмет</button>
+					</div>
+				</div>
+			</div>
 			<div class="mb-2">
 				<div class="input-group">
 					<span class="input-group-text">Стоимость предмета в магазине</span>
-									<input type="number" class="form-control" min="0" step="1" v-model="price">
+					<input type="number" class="form-control" min="0" step="1" v-model="price">
+					<span class="input-group-text"><i class="bi bi-coin"></i></span>
 				</div>
 			</div>
 			<div class="alert alert-warning">
-				<div>Стоимость создания - <span class="badge bg-secondary">{{ getCraftPrice }}</span>.</div>
+				<div>Стоимость создания - <span class="badge bg-secondary">{{ getCraftPrice }}&nbsp;<i class="bi bi-coin"></i></span>.</div>
 				<div>Выгода - <span :class="['badge bg-' + getBadgeClassForProfit]">{{ getProfit }} %</span>.</div>
 			</div>
 		</div>
@@ -76,15 +95,25 @@
 						return this.resources.reduce((sum, item) => sum + item.price * item.quantity / item.count, 0)
 					},
 					getProfit() {
-						if (!this.price) return 0;
-						let percent = (1 - this.getCraftPrice / this.price) * 100
-						return percent.toFixed()
+						if (!this.price || !this.getCraftPrice) return 0;
+						let percent = (this.price - this.getCraftPrice) * 100 / this.price;
+						return Math.round(percent * 100) / 100
 					},
 					getBadgeClassForProfit() {
 						if (this.getProfit == 0) return 'secondary'
 						return this.getProfit > 0 ? 'success' : 'danger'
 					}
-				}
+				},
+				methods: {
+					addToList(event) {
+						this.resources.map(item => item.quantity = 0)
+						this.price = 0
+						alert('TODO')
+					},
+					clearList(event) {
+						alert('TODO')
+					},
+				},
 			}).mount('#app')
 		</script>
 	</body>
