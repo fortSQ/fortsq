@@ -1,0 +1,18 @@
+{
+  "lang": "ru",
+  "name": "Калькулятор ресуров по игре Crossout",
+  "short_name": "Калькулятор Crossout",
+  "scope": ".",
+  "start_url": "/crossout",
+  "display": "standalone",
+  "background_color": "black",
+  "theme_color": "black",
+  "icons": [
+    {
+      "src": "/crossout/icon.png",
+      "sizes": "193x193",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
