@@ -48,14 +48,14 @@
 							<td class="text-nowrap"><i :class="['bi bi-' + resource.icon]"></i>&nbsp;{{ resource.name }}</td>
 							<td>
 								<div class="input-group">
-									<input type="number" class="form-control" min="1" step="1" title="Цена" v-model="resource.price">
+									<input type="number" inputmode="decimal" class="form-control" min="1" step="1" title="Цена" v-model="resource.price">
 									<span class="input-group-text"><i class="bi bi-coin"></i></span>
 									<span class="input-group-text">&times;</span>
-									<input type="number" class="form-control" min="1" step="1" title="Кол-во" v-model="resource.count">
+									<input type="number" inputmode="numeric" class="form-control" min="1" step="1" title="Кол-во" v-model="resource.count">
 									<span class="input-group-text">ед.</span>
 								</div>
 							</td>
-							<td><input type="number" class="form-control" min="0" step="1" value="0" v-model="resource.quantity"></td>
+							<td><input type="number" inputmode="numeric" class="form-control" min="0" step="1" value="0" v-model="resource.quantity"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -70,7 +70,7 @@
 			<div class="mb-2">
 				<div class="input-group">
 					<span class="input-group-text">Стоимость предмета в магазине</span>
-					<input type="number" class="form-control" min="0" step="1" v-model="price">
+					<input type="number" inputmode="decimal" class="form-control" min="0" step="1" v-model="price">
 					<span class="input-group-text"><i class="bi bi-coin"></i></span>
 				</div>
 			</div>
